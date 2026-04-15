@@ -1,0 +1,38 @@
+import { Link } from 'react-router-dom';
+
+const variantClasses = {
+  primary: 'bg-[#ffd41d] text--[#35408F] hover:bg-[#c49f00]',
+  secondary: 'bg-[#35408F] text-zinc-50 hover:bg-[#222d73]',
+};
+
+const Button = ({
+  children,
+  to,
+  type = 'button',
+  variant = 'secondary',
+  className = '',
+}) => {
+  const classes = [
+    'inline-flex items-center justify-center rounded-full px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] transition',
+    variantClasses[variant] ?? variantClasses.secondary,
+    className,
+  ]
+    .join(' ')
+    .trim();
+
+  if (to) {
+    return (
+      <Link to={to} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <button type={type} className={classes}>
+      {children}
+    </button>
+  );
+};
+
+export default Button;
